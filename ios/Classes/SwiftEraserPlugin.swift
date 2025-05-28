@@ -29,13 +29,13 @@ public class SwiftEraserPlugin: NSObject, FlutterPlugin {
         let args = call.arguments as! Dictionary<String, String>
         let pattern = args["pattern"]!
 
-        // UNUserNotificationCenter.current().getDeliveredNotifications { notifications in
-        //   let matchingIdentifiers = notifications
-        //     .filter { $0.request.identifier.contains(pattern) }
-        //     .map { $0.request.identifier }
+        UNUserNotificationCenter.current().getDeliveredNotifications { notifications in
+          let matchingIdentifiers = notifications
+            .filter { $0.request.identifier.contains(pattern) }
+            .map { $0.request.identifier }
 
-        //   UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: matchingIdentifiers)
-        // }
+          UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: matchingIdentifiers)
+        }
       }
       result(nil)
 
